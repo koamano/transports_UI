@@ -1,0 +1,6 @@
+{
+  "apiUrl": "http://localhost:8000/api/",
+  "requestApiEndpoint": "http://localhost:8000/api/request/",
+  "notesApiEndpoint": "http://localhost:8000/api/notes/",
+  "historyApiEndpoint": "http://localhost:8000/api/history/"
+}
