@@ -141,6 +141,13 @@
 .single-row {
   padding-right: 80px;
 }
+
+.sidebar-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 @media print {
   .no-print {
     display: none;

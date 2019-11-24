@@ -11,6 +11,8 @@ import "./App.css";
 // import Login from "./components/login";
 import { Route, Switch, Redirect } from "react-router-dom";
 import RequestView from "./components/requestView";
+import InventoryView from "./components/inventoryView";
+import SalesReportView from "./components/salesReportView";
 import Login from "./components/login";
 import Logout from "./components/logout";
 
@@ -364,6 +366,8 @@ class App extends Component {
 
         <Switch>
           <Route path="/requests" component={RequestView} />
+          <Route path="/inventory" component={InventoryView} />
+          <Route path="/salesreport" component={SalesReportView} />
           <Route path="/logout" component={Logout} />
           <Route path="/" component={Login} />
         </Switch>

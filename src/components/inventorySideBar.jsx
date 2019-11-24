@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import FormLabelText from "./common/formLabelText";
+import ImportFromFileBodyComponent from "./fileReader";
 
-export default class SideBar extends Component {
+export default class InventorySideBar extends Component {
   constructor(props) {
     super(props);
     this.state = { filterItems: {} };
@@ -14,19 +16,17 @@ export default class SideBar extends Component {
 
   onClear = () => {
     const emptyFilterItems = {
-      store: "",
-      type: "",
-      category: "",
-      name: "",
-      phone: "",
+      itemNumber: "",
+      itemName: "",
       vendor: "",
-      model: "",
+      price: "",
       size: "",
       color: "",
       width: "",
-      item_number: "",
-      requested_by: "",
-      purchase_order: ""
+      sex: "",
+      style: "",
+      onHandCollege: "",
+      onHandSolano: ""
     };
     this.setState({ filterItems: emptyFilterItems });
     this.props.handleClearFilter();
@@ -36,65 +36,94 @@ export default class SideBar extends Component {
     return (
       <div>
         <form>
-          <div class="form-group margin-top">
-            <select
-              className="form-control"
-              value={this.state.filterItems.store}
-              name="store"
-              onChange={this.handleChange}
-            >
-              <option value="" disabled selected>
-                STORE LOCATION
-              </option>
-              <option value="all">All</option>
-              <option value="college">College</option>
-              <option value="solano">Solano</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <select
-              className="form-control"
-              value={this.state.filterItems.type}
-              name="type"
-              onChange={this.handleChange}
-            >
-              <option value="" disabled selected>
-                TYPE
-              </option>
-              <option value="all">All</option>
-              <option value="Order">Order</option>
-              <option value="Transfer">Transfer</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <select
-              className="form-control"
-              value={this.state.filterItems.category}
-              name="category"
-              onChange={this.handleChange}
-            >
-              <option value="" disabled selected>
-                CATEGORY
-              </option>
-              <option value="all">All</option>
-              <option value="Footwear">Footwear</option>
-              <option value="Non-Footwear">Non-Footwear</option>
-            </select>
-          </div>
+          <h3 className="sidebar-title">Inventory</h3>
+          <ImportFromFileBodyComponent></ImportFromFileBodyComponent>
+          <FormLabelText
+            label="Vendor"
+            name="vendor"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="Item Number"
+            name="itemNumber"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="Item Name"
+            name="itemName"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="Color"
+            name="color"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="Price"
+            name="price"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="Gender"
+            name="gender"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="Size"
+            name="size"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="Width"
+            name="width"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="Style"
+            name="style"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="Type"
+            name="subCategory"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="OH College"
+            name="onHandCollege"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
+          <FormLabelText
+            label="OH Solano"
+            name="onHandSolano"
+            filterItemsName={this.state.filterItems.name}
+            handleChange={this.handleChange}
+          ></FormLabelText>
 
-          <div className="form-group row">
+          {/* <div className="form-group row">
             <label className="col-3 col-form-label" for="name">
-              Name
+              Item Number
             </label>
             <input
               className="form-control col margin-right"
               type="text"
-              name="name"
+              name="itemNumber"
               value={this.state.filterItems.name}
               onChange={this.handleChange}
-              placeholder="Enter Name"
             />
           </div>
+
           <div className="form-group row">
             <label className="col-3 col-form-label" for="phone">
               Phone
@@ -214,7 +243,7 @@ export default class SideBar extends Component {
               onChange={this.handleChange}
               placeholder="Enter PO"
             />
-          </div>
+          </div> */}
           <button
             type="button"
             className="btn btn-primary float-right"
