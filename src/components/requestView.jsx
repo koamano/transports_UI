@@ -37,7 +37,9 @@ class RequestView extends Component {
 
   refreshList = () => {
     http
-      .get("/request")
+      .get("/request", {
+        headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+      })
       .then(res => this.setState({ requestList: res.data }))
       .catch(err => console.log(err));
 
@@ -62,9 +64,17 @@ class RequestView extends Component {
   handleSubmit = (item, diff) => {
     this.toggle();
     if (item.id) {
-      http.put(`/request/${item.id}/`, item).then(res => this.refreshList());
+      http
+        .put(`/request/${item.id}/`, item, {
+          headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+        })
+        .then(res => this.refreshList());
     } else {
-      http.post("/request/", item).then(res => this.refreshList());
+      http
+        .post("/request/", item, {
+          headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+        })
+        .then(res => this.refreshList());
     }
     this.refreshList();
 
@@ -73,7 +83,9 @@ class RequestView extends Component {
 
   handleBulkSubmit = (bulkItems, action) => {
     bulkItems.map(item => {
-      http.put(`/request/${item.id}/`, item);
+      http.put(`/request/${item.id}/`, item, {
+        headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+      });
       this.handleAddBulkHistory(item, action);
     });
   };
@@ -89,7 +101,9 @@ class RequestView extends Component {
     let itemDataList = [];
     items.forEach(item => {
       http
-        .get(`/notes/?requestid=${item.id}`)
+        .get(`/notes/?requestid=${item.id}`, {
+          headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+        })
         .then(res => (itemNotes = res.data));
       const itemData = { ...item, ...itemNotes };
       itemDataList = [...itemDataList, itemData];
@@ -112,13 +126,17 @@ class RequestView extends Component {
 
   getHistory = item => {
     http
-      .get(`/history/?requestid=${item.id}`)
+      .get(`/history/?requestid=${item.id}`, {
+        headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+      })
       .then(res => this.setState({ historyList: res.data }));
   };
 
   getNotes = item => {
     http
-      .get(`/notes/?requestid=${item.id}`)
+      .get(`/notes/?requestid=${item.id}`, {
+        headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+      })
       .then(res =>
         this.setState({
           notesList: res.data,
@@ -138,7 +156,9 @@ class RequestView extends Component {
 
   handleAddNote = item => {
     try {
-      http.post("/notes/", item);
+      http.post("/notes/", item, {
+        headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+      });
     } catch (err) {
       let message = err.data;
     }
@@ -150,12 +170,16 @@ class RequestView extends Component {
     actionData = actionData.replace("{", " ");
     actionData = actionData.replace("}", ",");
     const historyItem = { request: item.id, text: actionData };
-    http.post("/history/", historyItem);
+    http.post("/history/", historyItem, {
+      headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+    });
   };
 
   handleAddBulkHistory = (item, action) => {
     const historyItem = { request: item.id, text: action };
-    http.post("/history/", historyItem);
+    http.post("/history/", historyItem, {
+      headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+    });
   };
 
   handleAll = () => {

@@ -13,6 +13,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import RequestView from "./components/requestView";
 import InventoryView from "./components/inventoryView";
 import SalesReportView from "./components/salesReportView";
+import SalesAnalysisView from "./components/salesAnalysisView";
 import Login from "./components/login";
 import Logout from "./components/logout";
 
@@ -368,6 +369,7 @@ class App extends Component {
           <Route path="/requests" component={RequestView} />
           <Route path="/inventory" component={InventoryView} />
           <Route path="/salesreport" component={SalesReportView} />
+          <Route path="/salesanalysis" component={SalesAnalysisView} />
           <Route path="/logout" component={Logout} />
           <Route path="/" component={Login} />
         </Switch>

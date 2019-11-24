@@ -44,12 +44,17 @@ export default class NavBar extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
+                  <Link className="nav-link" to="/salesanalysis">
+                    Sales Analysis
+                  </Link>
+                </li>
+                <li className="nav-item">
                   <Link className="nav-link" to="/logout">
                     Logout
                   </Link>
                 </li>
               </ul>
-              <form className="form-inline my-2 my-lg-0">
+              {/* <form className="form-inline my-2 my-lg-0">
                 <input
                   className="form-control mr-sm-2"
                   type="search"
@@ -61,7 +66,7 @@ export default class NavBar extends Component {
                 >
                   Search
                 </button>
-              </form>{" "}
+              </form>{" "} */}
             </React.Fragment>
           ) : null}
         </div>

@@ -37,7 +37,7 @@ export default class InventorySideBar extends Component {
       <div>
         <form>
           <h3 className="sidebar-title">Inventory</h3>
-          <ImportFromFileBodyComponent></ImportFromFileBodyComponent>
+          {/* <ImportFromFileBodyComponent></ImportFromFileBodyComponent> */}
           <FormLabelText
             label="Vendor"
             name="vendor"

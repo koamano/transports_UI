@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { login } from "./../services/authService";
 
 class Login extends Component {
-  state = { username: "", password: "" };
+  state = { username: "", password: "", token: "" };
 
   handleSubmit = async () => {
     try {
@@ -27,44 +27,56 @@ class Login extends Component {
 
   render() {
     const { username, password } = this.state;
-    return (
-      <div className="col-6 m-auto">
-        <div className="card card-body mt-5">
-          <h2 className="text-center">Login</h2>
-          <form>
-            <div className="form-group">
-              <label>Username</label>
-              <input
-                type="text"
-                className="form-control"
-                name="username"
-                onChange={this.handleChange}
-                value={username}
-              ></input>
-            </div>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                onChange={this.handleChange}
-                value={password}
-              ></input>
-            </div>
-            <div className="form-group">
-              <button
-                type="button"
-                onClick={this.handleSubmit}
-                className="btn btn-primary"
-              >
-                Login
-              </button>
-            </div>
-          </form>
+    let content = "";
+    if (localStorage["token"] == null) {
+      content = (
+        <div className="col-6 m-auto">
+          <div className="card card-body mt-5">
+            <h2 className="text-center">Login</h2>
+            <form>
+              <div className="form-group">
+                <label>Username</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="username"
+                  onChange={this.handleChange}
+                  value={username}
+                ></input>
+              </div>
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  onChange={this.handleChange}
+                  value={password}
+                ></input>
+              </div>
+              <div className="form-group">
+                <button
+                  type="button"
+                  onClick={this.handleSubmit}
+                  className="btn btn-primary"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      content = (
+        <div className="col-6 m-auto">
+          <div className="card card-body mt-5">
+            <h2 className="text-center">Logged In</h2>
+          </div>
+        </div>
+      );
+    }
+    return <div>{content}</div>;
   }
 }
 

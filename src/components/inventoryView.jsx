@@ -16,7 +16,9 @@ class InventoryView extends Component {
 
   refreshList = () => {
     http
-      .get("/inventory")
+      .get("/inventory", {
+        headers: { Authorization: `Token ${localStorage.getItem("token")}` }
+      })
       .then(res => this.setState({ viewList: res.data }))
       .catch(err => console.log(err));
   };
